@@ -39,8 +39,8 @@ void loop();
 #define LED_BUILTIN D4
 #define BUTTON_BUILTIN D7
 
-#define HIGH 1
-#define LOW 0
+#define HIGH Bit_SET
+#define LOW Bit_RESET
 
 // GPIO pin states
 enum {

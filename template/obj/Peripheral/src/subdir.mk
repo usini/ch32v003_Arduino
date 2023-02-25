@@ -24,6 +24,7 @@ C_SRCS += \
 ../Peripheral/src/ch32v00x_tim.c \
 ../Peripheral/src/ch32v00x_usart.c \
 ../Peripheral/src/ch32v00x_wwdg.c \
+../Peripheral/src/neopixels.c \
 ../Peripheral/src/oled.c \
 ../Peripheral/src/st7302.c 
 
@@ -47,6 +48,7 @@ OBJS += \
 ./Peripheral/src/ch32v00x_tim.o \
 ./Peripheral/src/ch32v00x_usart.o \
 ./Peripheral/src/ch32v00x_wwdg.o \
+./Peripheral/src/neopixels.o \
 ./Peripheral/src/oled.o \
 ./Peripheral/src/st7302.o 
 
@@ -70,6 +72,7 @@ C_DEPS += \
 ./Peripheral/src/ch32v00x_tim.d \
 ./Peripheral/src/ch32v00x_usart.d \
 ./Peripheral/src/ch32v00x_wwdg.d \
+./Peripheral/src/neopixels.d \
 ./Peripheral/src/oled.d \
 ./Peripheral/src/st7302.d 
 

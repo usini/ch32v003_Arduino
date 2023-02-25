@@ -1,4 +1,4 @@
-User/main.o: ../User/main.c \
+Peripheral/src/neopixels.o: ../Peripheral/src/neopixels.c \
  C:\MRS_DATA\workspace\ArduinoTemplate\template\Peripheral\inc/Arduino.h \
  C:\MRS_DATA\workspace\ArduinoTemplate\template\Debug/debug.h \
  C:\MRS_DATA\workspace\ArduinoTemplate\template\Peripheral\inc/ch32v00x.h \
