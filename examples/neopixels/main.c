@@ -14,7 +14,7 @@ void setup() {
     Serial_begin(115200);
     pixels_begin();
     printf("START\r\n");
-    pixels_clear();
+    pixels_show();
 }
 
 void loop() {
