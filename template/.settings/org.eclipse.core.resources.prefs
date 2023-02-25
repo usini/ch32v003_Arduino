@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//Peripheral/inc/Arduino.h=GBK
+encoding//Peripheral/src/Arduino.c=GBK
+encoding//Startup/startup_ch32v00x.S=GBK
+encoding//User/main.c=GBK
+encoding/ArduinoTemplate.launch=GBK
