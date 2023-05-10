@@ -1,7 +1,7 @@
 # ch32v003_Arduino
 Really basic attempt to replicate Arduino functions inside MounRiver 
 
-Unfortunately ch32v003 is C so class is not possible so it won't really arduino compatible.
+Update : Someone is trying to port it to Arduino : https://github.com/AlexanderMandera/arduino-wch32v003/
 
 # Dev Board used:
 ## [Aliexpress Link](https://fr.aliexpress.com/item/1005004964355080.html)   
