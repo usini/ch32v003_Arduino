@@ -59,7 +59,11 @@ void Serial_begin(uint32_t baudrate);
 void Serial_println(const char *serialmessage);
 
 // Wrapper methods
-void delay(int i);
+void delay(unsigned int i);
+void delayMicroseconds(unsigned int us);
+unsigned long micros(void);
+unsigned long millis(void);
+
 //
 // Digital pin functions use a numbering scheme to make it easier to map the
 // pin number to a port name and number
