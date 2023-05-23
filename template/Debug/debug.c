@@ -12,8 +12,9 @@
  *******************************************************************************/
 #include <debug.h>
 
-static uint8_t  p_us = 0;
-static uint16_t p_ms = 0;
+static uint16_t ticks_us = 0;
+
+uint32_t sysmillis = 0;
 
 /*********************************************************************
  * @fn      Delay_Init
@@ -22,10 +23,31 @@ static uint16_t p_ms = 0;
  *
  * @return  none
  */
+
+void SysTick_Init(void) {
+    NVIC_EnableIRQ(SysTicK_IRQn);
+    SysTick->SR &= ~(1 << 0);
+    SysTick->CMP = SystemCoreClock/8000 - 1;
+    SysTick->CNT = 0;
+    SysTick->CTLR = 0x3; // STIE(2) + STE(1)
+}
+
+void SysTick_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+
+void SysTick_Handler(void) {
+    sysmillis++;
+    SysTick->CMP += SystemCoreClock/8000;
+    SysTick->SR = 0;
+}
+
 void Delay_Init(void)
 {
-    p_us = SystemCoreClock / 8000000;
-    p_ms = (uint16_t)p_us * 1000;
+    ticks_us = SystemCoreClock / 8000000;
+    SysTick_Init();
+}
+
+uint32_t Systick_micros(void){
+    return SysTick->CNT/ticks_us;
 }
 
 /*********************************************************************
@@ -41,15 +63,10 @@ void Delay_Us(uint32_t n)
 {
     uint32_t i;
 
-    SysTick->SR &= ~(1 << 0);
-    i = (uint32_t)n * p_us;
+    i = (uint32_t)n * ticks_us + SysTick->CNT;
 
-    SysTick->CMP = i;
-    SysTick->CNT = 0;
-    SysTick->CTLR |=(1 << 0);
+    while ( SysTick->CNT < i);
 
-    while((SysTick->SR & (1 << 0)) != (1 << 0));
-    SysTick->CTLR &= ~(1 << 0);
 }
 
 /*********************************************************************
@@ -65,15 +82,9 @@ void Delay_Ms(uint32_t n)
 {
     uint32_t i;
 
-    SysTick->SR &= ~(1 << 0);
-    i = (uint32_t)n * p_ms;
+    i = (uint32_t)n * ticks_us *1000 + SysTick->CNT;
 
-    SysTick->CMP = i;
-    SysTick->CNT = 0;
-    SysTick->CTLR |=(1 << 0);
-
-    while((SysTick->SR & (1 << 0)) != (1 << 0));
-    SysTick->CTLR &= ~(1 << 0);
+    while ( SysTick->CNT < i);
 }
 
 /*********************************************************************
@@ -150,6 +161,5 @@ void *_sbrk(ptrdiff_t incr)
     curbrk += incr;
     return curbrk - incr;
 }
-
 
 
