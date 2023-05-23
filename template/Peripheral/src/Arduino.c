@@ -20,9 +20,22 @@ void Serial_begin(uint32_t baudrate){
     USART_Printf_Init(baudrate);
 }
 
-void delay(int i)
+void delay(unsigned int i)
 {
 	Delay_Ms(i);
+}
+
+void delayMicroseconds(unsigned int us){
+
+    Delay_Us(us);
+}
+
+unsigned long micros(void){
+    return Systick_micros();
+}
+
+unsigned long millis(void){
+    return Systick_micros()/1000;
 }
 // Arduino-like API defines and function wrappers for WCH MCUs
 
