@@ -31,6 +31,7 @@
 void Delay_Init(void);
 void Delay_Us(uint32_t n);
 void Delay_Ms(uint32_t n);
+uint32_t Systick_micros(void);  
 void USART_Printf_Init(uint32_t baudrate);
 
 #ifdef __cplusplus
